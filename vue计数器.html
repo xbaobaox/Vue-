@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>计数器</title>
+  </head>
+  <body>
+    <p>
+      本章学习了新的指令:v-on:"click",监听某个元素的点击事件,并且需要制定当发生点击时,执行的方法(通常是methods里面的函数);新的属性:methods
+    </p>
+    <div id="app">
+      <h2>当前计数:{{ counter }}</h2>
+      <!-- <button v-on:click="counter++">+</button>
+      <button v-on:click="counter--">-</button> -->
+      <button v-on:click="add">+</button>
+      <button @click="sub">-</button>
+      <!-- 语法糖写法 -->
+      <!-- <button v-on:click="sub">-</button> -->
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        // el:document.querySelector(), 也可以传HTMLElement
+        data: {
+          //VUe实例对应的数据对象
+          counter: 0
+        },
+        methods: {
+          add() {
+            console.log("add被执行");
+            this.counter++;
+          },
+          sub() {
+            console.log("sub被执行");
+            this.counter--;
+          },
+          created() {
+              console.log('created');
+          },
+          mounted() {
+              console.log('mounted')
+          },
+        }
+      });
+    </script>
+  </body>
+</html>

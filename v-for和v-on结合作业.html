@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li
+          v-for="(item, index) in names"
+          :key="names"
+          :class="{active:currentIndex === index}"
+          @click="liClick(index)"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        names: ["bob", "tom", "tim", "jerry", "beauty"],
+        currentIndex: 0 //点击时设定的初始参数(默认状态),也让第一个数组变成默认形式
+      },
+      methods: {
+        liClick(index) {
+          this.currentIndex = index; //将点击后的index传入函数内,让点击的默认参数变成我所点击的数字,所以点击谁谁就是true,
+        }
+      }
+    });
+  </script>
+</html>

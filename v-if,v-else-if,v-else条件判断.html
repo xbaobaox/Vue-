@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-if="isTrue">Now you can see me.{{ message }}!</p>
+      <p v-else>Yeah! It's me!</p>
+      <h2 v-show="isTrue">隐藏的方法是display:none,并没有从dom中移除.</h2>
+    </div>
+    <div id="vElseIf">
+      <p v-if="score>100">信息错误</p>
+      <p v-else-if="score>=90">优秀</p>
+      <p v-else-if="score>=70">良好</p>
+      <p v-else-if="score>=60">一般</p>
+      <p v-else-if="0<score<60">很差</p>
+      <p v-else-if="0>score">信息错误</p>
+    </div>
+    <p>-----------------------------</p>
+    <br />
+
+    <div id="app1">
+      <span v-if="isUser">
+        <label for="userName">账号登陆</label>
+        <input type="text" id="userName" key="userName" />
+      </span>
+      <span v-else>
+        <label for="userEmail">邮箱登陆</label>
+        <input type="text" id="userEmail" key="userEmail" />
+        <!-- 加了key之前输入的内容就会清空 -->
+      </span>
+      <button @click="isUser=!isUser">点击切换</button>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        isTrue: true
+      }
+    });
+    const vElseIf = new Vue({
+      el: "#vElseIf",
+      data: {
+        score: -50
+      }
+    });
+    const app1 = new Vue({
+      el: "#app1",
+      data: {
+        isUser: true
+      },
+      methods: {
+        turnUser() {
+          isUser = !isUser;
+        }
+      }
+    });
+  </script>
+</html>

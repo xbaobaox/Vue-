@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ counter }}</h2>
+      <button v-on:click="counter++">+</button>
+      <button v-on:click="counter--">-</button>
+      <!-- <button v-on:click="increment">+</button>
+      <button v-on:click="decrement">-</button> -->
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <button @click="someFn">someFn</button>
+      <!-- 事件定义时,写方法时省略了小括号,但是方法本身是需要一个参数的,这个时候vue会默认的将浏览器生产的event事件对象做为参数传入到方法 -->
+      <button @click="someFn1(123,$event)">someFn1</button>
+      <!-- 如果要传输event时间需要$event -->
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        counter: 0
+      },
+      methods: {
+        increment() {
+          this.counter++;
+        },
+        decrement() {
+          this.counter--;
+        },
+        someFn(name){
+            console.log('------'+name);
+        },
+        someFn1(name,event){
+            console.log('------'+name+event); 
+        },
+      }
+    });
+  </script>
+</html>

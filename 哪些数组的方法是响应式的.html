@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item, index) in letters" :key="item">{{ item }}</li>
+      </ul>
+      <button v-on:click="pushA()">aaa</button>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        letters: ["a", "b", "c", "d"]
+      },
+      methods: {
+        pushA() {
+          // this.letters.push("aaa");
+          // 1.push 2.pop 3.shift 4.unshift 5.splice 6.reverse
+
+          //通过索引修改元素
+          //this.letters[0]='aaa' 此方法并不能在dom上显示,但是实际是已经修改了.它不是响应式的!
+          //Vue.set(1.要修改的对象.2.要修改的位置.3.value)
+          Vue.set(this.letters,0,'fuck')
+        }
+        
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .active {
+        color: red;
+      }
+      .line {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <h2 :class="active">{{ message }}</h2> -->
+      <!-- <h2 :class="{active:true,line:false}">{{message}}</h2> -->
+      <h2 class="title" :class="getClasses()">
+        {{ message }}
+      </h2>
+      <!-- 这个就是对象语法 -->
+      <button v-on:click="btnClick()">button</button>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    // v-bind绑定class和style 语法糖 :class 或者 :style
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        imgURL: "https://cn.vuejs.org/images/logo.png",
+        aHref:
+          "https://cn.vuejs.org/v2/guide/syntax.html#v-bind-%E7%BC%A9%E5%86%99",
+        isActive: true,
+        isLine: false
+      },
+      methods: {
+        btnClick() {
+          this.isActive = !this.isActive;
+          this.isLine = !this.isLine;
+        },
+        getClasses(){
+          return{active:this.isActive,line:this.isLine}
+        }
+      }
+    });
+  </script>
+</html>

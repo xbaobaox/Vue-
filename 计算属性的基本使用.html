@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>computed</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ firstName + " " + lastName }}</h2>
+      <h2>{{ firstName }} {{ lastName }}</h2>
+      <h2>{{ getFullName() }}</h2>
+      <h2>{{ fullName }}</h2>
+      <h2>总价格: {{ es6Price }} ¥</h2>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        firstName: "bob",
+        lastName: "lis",
+        books: [
+          { id: 110, name: "Unix编程艺术", price: 119 },
+          { id: 111, name: "代码大全", price: 105 },
+          { id: 112, name: "深入理解计算机原理", price: 98 },
+          { id: 113, name: "现代操作系统", price: 87 }
+        ]
+      },
+      //这里命名不需要用函数方式取名,尽量直接用属性名取名 比如:fullName
+      //引用的时候不需要加小括号! 多次调用只会调用一次
+      computed: {
+        fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+        totalPrice() {
+          let result = 0;
+          for (let i = this.books.length; i--; ) {
+            result += this.books[i].price;
+          }
+          return result;
+        },
+        //es6的遍历方法
+        es6Price() {
+          let result = 0;
+          for (let book of this.books) {
+            result += book.price;
+          }
+          return result;
+        }
+      },
+      methods: {
+        getFullName() {
+          return this.firstName + " " + this.lastName;
+        }
+      }
+    });
+  </script>
+</html>

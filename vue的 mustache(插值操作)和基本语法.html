@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>vue插值操作和基本语法</title>
+    <style>
+    [v-cloak]{
+        display: none
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <p>1.mustache(插值表达式)</p>
+      <h2 v-pre>{{ message }}</h2>
+      <h2>{{ message }}</h2>
+      <!-- 不仅可以写变量,还可以直接写表达式 -->
+      <p>2.不仅可以写变量,还可以直接写表达式</p>
+      <h3>{{ message + " " + firstName }}</h3>
+      <h3>{{ message }} {{ firstName }}</h3>
+      <h3>{{ counter * 2 }}</h3>
+      <h3 v-pre>{{ message + " " + firstName }}</h3>
+      <h3 v-pre>{{ message }} {{ firstName }}</h3>
+      <h3 v-pre>{{ counter * 2 }}</h3>
+      <!-- v-once指令的使用 不会根据数据的改变而改变-->
+      <p>3.v-once指令的使用 不会根据数据的改变而改变</p>
+      <h2>{{ saySome }}</h2>
+      <h2 v-once>{{ saySome }}</h2>
+      <p>4.v-html</p>
+      <!-- v-html -->
+      <h3 v-pre>h2 v-html="url"/h2</h3>
+      <h2>{{ url }}</h2>
+      <h2 v-html="url"></h2>
+      <!-- v-text -->
+      <h2 v-text="message">{{ firstName }}</h2>
+      <!-- v-text会覆盖掉标签里的表达式和文本 -->
+      <h2>{{ message }} {{ firstName }}</h2>
+      <!-- v-pre -->
+      <p>5.v-pre 显示原始信息</p>
+      <h2 v-pre>{{ message }}</h2>
+      <!-- v-cloak 在vue解析之前,div中有一个属性v-cloak 解析后去除该属性 该属性可以解决画面因为js文件没有解析而产生的'闪动'情况-->
+      <p>5.v-cloak</p>
+      <p>在vue解析之前,div中有一个属性v-cloak 解析后去除该属性 该属性可以解决画面因为js文件没有解析而产生的'闪动'情况</p>
+      <h3 v-cloak></h3>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        saySome: "fuck",
+        message: "hello",
+        firstName: "tom",
+        lastName: "fuck",
+        url: '<a href="http://www.baidu.com">百度一下</a>',
+        counter: 100
+      }
+    });
+  </script>
+</html>

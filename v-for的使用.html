@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in names">{{ item }}</li>
+      </ul>
+      <ul>
+        <li v-for="(item,index) in names">{{ index + 1 }}.{{ item }}</li>
+      </ul>
+      <h3>对象的遍历</h3>
+      <ul>
+        <li v-for="item in nameObj">{{ item }}</li>
+      </ul>
+      <!-- key 要在后面 -->
+      <ul>
+        <li v-for="(value,key) in nameObj">{{ key }}:{{ value }}</li>
+      </ul>
+      <!-- 获取对象index -->
+      <ul>
+        <li v-for="(value,key,index) in nameObj">{{index}},{{key}}:{{value}}</li>
+      </ul>
+      <!-- :key会给每个值绑定 这样操作的时候会提高性能 -->
+      <ul>
+        <li v-for="(item, index) in letters" :key="item">{{item}}</li>
+      </ul>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        names: ["fuck", "shit", "ball", "suck"],
+        letters:['a','b','c','d','e'],
+        nameObj: {
+          name: "tom",
+          age: 10,
+          height: 1.8
+        }
+      }
+    });
+  </script>
+</html>
