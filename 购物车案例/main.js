@@ -34,10 +34,21 @@ const app = new Vue({
   computed: {
     totalPrice() {
       let totalPrice = 0;
-      for (let i = 0; i < this.books.length; i++) {
-        totalPrice += this.books[i].price * this.books[i].count
-      }
-      return totalPrice;
+      // for (let i = 0; i < this.books.length; i++)
+      // for(let i in this.books)
+      // {
+      //   totalPrice += this.books[i].price * this.books[i].count
+      // }
+      //for...of循环直接把数组或者对象里面的东西给遍历出来
+      // for (let item of this.books) {
+      //   totalPrice += item.price * item.count
+      // }
+      // return totalPrice;
+      //使用array.reduce方法直接计算
+      // return this.books.reduce(function (a, book) {
+      //   return a + book.price * book.count;
+      // },0);
+      return this.books.reduce((a, book) => a + book.price * book.count, 0)
     }
   },
   filters: { //它叫过滤器,可以通过管道符号"|" 使用它,它可以像"滤镜" 一样改变你的字符串.
