@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- checkbox单选框 -->
+      <label for="terms">
+        <input type="checkbox" id="terms" v-model="isTerms" />
+      </label>
+      <h3>你选择的是{{ isTerms }}</h3>
+      <button :disabled="!isTerms">下一步</button>
+      <br /><br />
+      <!-- checkbox多选框 -->
+      <input type="checkbox" value="篮球" v-model="hobbies" />篮球
+      <input type="checkbox" value="足球" v-model="hobbies" />足球
+      <input type="checkbox" value="乒乓球" v-model="hobbies" />乒乓球
+      <input type="checkbox" value="羽毛球" v-model="hobbies" />羽毛球
+      <p>您的好爱是{{ hobbies }}</p>
+      <!-- 值绑定 -->
+      <label v-for="(item, index) in originHobbies" :key="item" :for="index">
+        <input type="checkbox" :value="item" :id="index" v-model="hobbies" />
+        {{ item }}
+      </label>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        isTerms: false,
+        hobbies: [],
+        originHobbies: ["篮球", "足球", "乒乓球", "羽毛球"]
+      }
+    });
+  </script>
+</html>

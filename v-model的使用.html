@@ -10,6 +10,10 @@
     <div id="app">
       <input type="text" v-model="message" />
       {{ message }}
+      <!-- 双向绑定实现原理 -->
+      <!-- <input type="text" v-bind:value="message" v-on:input="valueChange" /> -->
+      <!-- 复习:v-bind语法糖 : v-on语法糖@ -->
+      <!-- <input type="text" v-bind:value="message" v-on:input="message = $event.target.value" />-->
     </div>
   </body>
   <script src="js/vue.min.js"></script>
@@ -19,7 +23,11 @@
       data: {
         message: "hello"
       },
-      methods: {}
+      methods: {
+        valueChange(event) {
+          this.message = event.target.value; //target是什么??
+        }
+      }
     });
   </script>
 </html>

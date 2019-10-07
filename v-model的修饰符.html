@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1.lazy -->
+      <input type="text" v-model.lazy="message" />
+      <p>{{ message }}</p>
+      <!-- 2.number -->
+      <input type="number" v-model.number="age" /><!-- 不加number的话 输出除了0都是string类型 -->
+      <p>{{ age }}-{{typeof age}}</p>
+      <!-- 3.trim -->
+      <input type="textarea" v-model.trim="someText" />
+      <p>{{ someText }}</p>
+    </div>
+  </body>
+  <script src="js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello",
+        age: '',
+        someText: ""
+      }
+    });
+  </script>
+</html>
