@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn2> </cpn2>
+      <!-- 如果想使用cpn1则必须在vue实例里注册,否则直接使用子组件会报错 -->
+      <cpn1></cpn1>
+    </div>
+  </body>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    const cpnC1 = Vue.extend({
+      template: `<div><P>我是第一个组件</p></div>`
+    });
+    //在conC2里用components
+    const cpnC2 = Vue.extend({
+      template: `<div><P>我是第二个组件</p><cpn1></cpn1></div>`,
+        components:{
+          cpn1:cpnC1
+        }
+    });
+    //这个也叫root组件(根组件)
+    const app=new Vue({
+      el:"#app",
+      data:{
+
+      },
+      components:{
+        cpn2:cpnC2,
+        cpn1:cpnC1
+      }
+    })
+  </script>
+</html>

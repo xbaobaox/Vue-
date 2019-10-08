@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn1></cpn1>
+      <cpn2></cpn2>
+    </div>
+  </body>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    // const cpn1=Vue.extend()
+    //语法糖的使用 不用extend 直接传入component
+    Vue.component("cpn1", {
+      template: `
+    <div>
+    <h2>我是标题</h2>
+    <p>我是内容</p>
+    </div>
+    `
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello"
+      },
+      //注册局部组件语法糖
+      components: {
+        cpn2: {
+          template: `
+           <div>
+           <h2>我是标题2</h2>
+           <p>我是内容2</p>
+           </div>
+           `
+        }
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width= , initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- html标签里不能用驼峰标签 是因为html的标签不支持大小写的 -->
+      <cpn :c-info="info" :child-my-message="message"></cpn>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      {{cInfo}}
+      {{childMyMessage}}
+    </div>
+  </template>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    const cpn = {
+      template: "#cpn",
+      props: {
+        cInfo: {
+          type: String,
+          default: {}
+        },
+        childMyMessage:{
+          type:String,
+          default:''
+        }
+      }
+    };
+    const app = new Vue({
+      el: "#app",
+      data: {
+        info: {
+          name: "tom",
+          age: 16
+        },
+        message:'hello'
+      },
+      components: {
+        cpn
+      }
+    });
+  </script>
+</html>
