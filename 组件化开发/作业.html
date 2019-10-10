@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn @increment="changetotal" @decrement="changetotal"></cpn>
+      <h2>点击次数{{ total }}</h2>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    //子组件
+    const cpn = {
+      template: "#cpn", //这里要写#号
+      data() {
+        return {
+          counter: 0 //这里都是冒号,不是等号
+        };
+      },
+      methods: {
+        increment() {
+          this.counter++;
+          this.$emit("increment", this.counter);
+        },
+        decrement() {
+          this.counter--;
+          this.$emit("decrement", this.counter);
+        }
+      }
+    };
+    //父组件
+    const app = new Vue({
+      el: "#app",
+      data: {
+        total: 0
+      },
+      methods: {
+        changetotal(counter) {
+          //这里要传入counter
+          this.total = counter;
+        }
+      },
+      components: {
+        cpn
+      }
+    });
+  </script>
+</html>

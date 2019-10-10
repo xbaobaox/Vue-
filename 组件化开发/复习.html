@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn @btnclick="showitem"></cpn>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      <button v-for="(item, index) in arr" :key="item" @click="itemclick(item)">
+        {{ item.name }}
+      </button>
+    </div>
+  </template>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    const cpn = {
+      template: "#cpn",
+      data() {
+        return {
+          arr: [
+            { id: 1, name: "火热销售" },
+            { id: 2, name: "家用电器" },
+            { id: 3, name: "个人电脑" },
+            { id: 4, name: "器材耗材" }
+          ]
+        };
+      },
+      methods: {
+        itemclick(item) {
+          this.$emit("btnclick", item);
+        }
+      }
+    };
+    const app = new Vue({
+      el: "#app",
+      components: {
+        cpn
+      },
+      methods: {
+        showitem(item) {
+          console.log(item);
+        }
+      }
+    });
+  </script>
+</html>

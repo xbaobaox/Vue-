@@ -12,7 +12,7 @@
         <!-- .stop的修饰符 阻止冒泡 -->
         aaaaa<button @click.stop="btnClick">a button</button>
       </div>
-      <!--  .prevent的修饰符 -->
+      <!--  .prevent的修饰符 阻止一些默认事件,比如点击提交会页面404 -->
       <form action="baidu">
         <input type="submit" value="提交" @click.prevent="submitClick" />
       </form>

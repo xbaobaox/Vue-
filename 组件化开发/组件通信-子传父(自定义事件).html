@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 父组件模板 -->
+    <div id="app">
+      <!-- 父组件接收子组件 -->
+      <cpn @itemclick="cpnclick"></cpn>
+    </div>
+  </body>
+  <!-- 子组件模板 -->
+  <template id="cpn">
+    <div>
+      <button
+        v-for="(item, index) in categories"
+        :key="item"
+        @click="btnclick(item)"
+      >
+        {{ item.name }}
+      </button>
+    </div>
+  </template>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    const cpn = {
+      template: "#cpn",
+      data() {
+        return {
+          categories: [
+            { id: "hot", name: "热门推荐" },
+            { id: "phone", name: "手机数码" },
+            { id: "appliances", name: "家用电器" },
+            { id: "computer", name: "电脑办公" }
+          ]
+        };
+      },
+      methods: {
+        btnclick(item) {
+          //传递给父组件:自定义事件
+          this.$emit("itemclick",item);
+        }
+      }
+    };
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "hello"
+      },
+      components: {
+        cpn
+      },
+      methods: {
+        cpnclick(item) {
+          console.log("cpnclick",item);
+        }
+      }
+    });
+  </script>
+</html>
