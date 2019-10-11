@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      <!-- 我是子组件
+      <button @click="btnClick">button</button> -->
+      <cpn1></cpn1>
+    </div>
+  </template>
+
+  <template id="cpn1">
+    <div>
+      我是子子组件
+      <button @click="btnClick">button</button>
+    </div>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        name:"I'm father!"
+      },
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {
+              name: "I'm cpn"
+            };
+          },
+          methods: {
+            btnClick() {
+              console.log(this.$parent);
+            }
+          },
+          components: {
+            cpn1: {
+              template: "#cpn1",
+              data() {
+                return {
+                  name: "I'm cpn1"
+                };
+              },
+              methods: {
+                btnClick() {
+                  //使用$parent以后,复用性不强,独立性不强,不能单独使用子组件!不建议使用.
+                  console.log(this.$parent);
+                  console.log(this.$parent.name);
+                  //访问根组件$root
+                  console.log(this.$parent.$parent.name);
+                  console.log(this.$root.name)
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</html>

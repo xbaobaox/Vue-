@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn ref='aaa'></cpn>
+      <cpn1></cpn1>
+      <button @click="btnClick">button</button>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>我是子组件</div>
+  </template>
+  <template id="cpn1">
+    <div>
+      我是子组件1
+    </div>
+  </template>
+  <script src="../js/vue.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      methods: {
+        btnClick() {
+          //1.$children用的比较少 要靠下标找到,有局限性
+          // console.log(this.$children);
+          // this.$children[0].showMessage();
+          // for (let c of this.$children) {
+          //   console.log(c.name);
+          //   c.showMessage();
+          // }
+          //2.$refs 需要在子组件上加ref="ID";
+            console.log(this.$refs.aaa)
+        },
+        // btnClick1() {
+        //   console.log(this.$children);
+        //   this.$children[3].showMessage();
+        
+        // }
+      },
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {
+              name: "I'm bob"
+            };
+          },
+          methods: {
+            showMessage() {
+              console.log("子组件显示的方法");
+            }
+          }
+        },
+        cpn1: {
+          template: "#cpn1",
+          data() {
+            return {
+              name: "I'm fuck"
+            };
+          },
+          methods: {
+            showMessage() {
+              console.log("操你的嘴");
+            }
+          }
+        }
+      }
+    });
+  </script>
+</html>
