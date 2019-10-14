@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn></cpn>
+      <cpn>
+        <!-- 获取子组件的pLanguage -->
+        <!-- 在父组件里以其他形式展示 -->
+        <template v-slot="slot">
+          <!-- 从父组件获取子组件的数据,并遍历,遍历后在后面加入分隔符即可 -->
+          <i v-for="(item, index) in slot.fuck" :key="item">={{ item }}=</i>
+          <br />
+          <span v-for="(item, index) in slot.fuck" :key="item"
+            >{{ item }}=></span
+          >
+          <br />
+          <span>{{ slot.fuck.join("=>") }}</span>
+          <br />
+          <span>{{ slot.fuck }}</span>
+        </template>
+      </cpn>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      <!-- 首先获取子组件的数据,属性自定义取名 -->
+      <slot :fuck="pLanguages">
+        <ul>
+          <!-- 在子组件里默认以列表形式展示 -->
+          <li v-for="(item, index) in pLanguages" :key="item">{{ item }}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {
+              pLanguages: [
+                "Javascript",
+                "C++",
+                "Java",
+                "C#",
+                "Python",
+                "go",
+                "swift"
+              ]
+            };
+          }
+        }
+      }
+    });
+  </script>
+</html>

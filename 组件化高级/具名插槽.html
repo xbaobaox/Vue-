@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <cpn><span slot="center">替换中间插槽</span></cpn>
+      <cpn><button slot="right">替换右边按钮</button></cpn>
+      <cpn>
+        <i slot="left">替换左边字体</i>
+        <span slot="right">替换右边插槽</span>
+        <button slot="center">替换中间插槽</button>
+      </cpn>
+    </div>
+  </body>
+  <template id="cpn">
+    <div>
+      <!-- <h2>组件标题1</h2>
+      <p>组件标题内容</p>
+      <slot><button>插槽默认按钮</button></slot> -->
+      <slot name="left"><span>左边插槽</span></slot>
+      <slot name="center"><span>中间插槽</span></slot>
+      <slot name="right"><span>右边插槽</span></slot>
+    </div>
+  </template>
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {},
+      components: {
+        cpn: {
+          template: "#cpn",
+          data() {
+            return {};
+          }
+        }
+      }
+    });
+  </script>
+</html>
