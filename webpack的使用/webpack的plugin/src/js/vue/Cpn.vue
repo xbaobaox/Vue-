@@ -3,6 +3,7 @@
     <h2>Cpn组件标题</h2>
     <p>Cpn内容</p>
     <h3>{{name}}</h3>
+  <button>webpack-dev-server测试</button>
   </div>
 </template>
 

@@ -20,12 +20,14 @@ export const output = {
 }; */
 const path = require('path')
 const webpack = require('webpack')
+const htmlWebpackPlugin = require('html-webpack-plugin')
+const uglifyjsWebpackPlugin=require('uglifyjs-webpack-plugin')
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: 'dist/'
+    // publicPath: 'dist/'
   },
   module: {
     rules: [
@@ -84,6 +86,16 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.BannerPlugin('最终版权归小火苗所有')
-  ]
+    new webpack.BannerPlugin('最终版权归小火苗所有'),
+    new htmlWebpackPlugin({
+      //根据这个模板生成html文件
+      template:'index.html'
+    }),
+    // new uglifyjsWebpackPlugin()
+  ],
+  //搭建本地服务器
+  devServer: {
+    contentBase: './dist',
+    inline: true,
+  }
 }
