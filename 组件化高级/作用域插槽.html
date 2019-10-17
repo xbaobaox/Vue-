@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <style>
+    .spanSlot{
+      background-color: red;
+    }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -22,7 +27,7 @@
           <br />
           <span>{{ slot.fuck.join("=>") }}</span>
           <br />
-          <span>{{ slot.fuck }}</span>
+          <span class="spanSlot">{{ slot.fuck }}</span>
         </template>
       </cpn>
     </div>
